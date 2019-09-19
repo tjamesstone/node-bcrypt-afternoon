@@ -22,6 +22,9 @@ app.use(
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/auth/logout', authCtrl.logout)
+
+//DRAGON ENDPOINTS
+app.get('/api/treasure/dragon', treasureCtrl.dragonTreasure)
 //MASSIVE LISTENING
 
 massive(CONNECTION_STRING).then(db => {
