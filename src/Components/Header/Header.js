@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './Header.css';
+import swal from 'sweetalert2'
 
 export default class Header extends Component {
   constructor() {
@@ -37,7 +38,7 @@ export default class Header extends Component {
     })
     .catch( err => {
       this.setState({username: '', password: ''})
-      alert(err.response.request.response)
+      swal.fire(err.response.request.response)
     })
   }
 
@@ -50,7 +51,7 @@ export default class Header extends Component {
     })
     .catch(err => {
       this.setState({ username: '', password: '' })
-      alert(err.response.request.response)
+      swal.fire(err.response.request.response)
   })
   }
 

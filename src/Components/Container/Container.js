@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Container.css';
 import Treasure from '../Treasure';
+import swal from 'sweetalert2'
 
 export default class Container extends Component {
   constructor() {
@@ -33,10 +34,26 @@ export default class Container extends Component {
 
   getAllTreasure() {
     // axios GET to /api/treasure/all here
+    axios.get('/api/treasure/all')
+    .then( treasure => {
+      this.setState({treasures:{
+        ...this.state.treasures,
+        all: treasure.data
+      }})
+    })
+    .catch( err => {
+      swal.fire(err.response.request.response)
+    })
   }
 
   getMyTreasure() {
-    // axios GET to /api/treasure/user here
+    axios.get('/api/treasure/user')
+    .then( treasure => {
+      this.setState({treasures: {...this.state.treasures, user: treasure.data}})
+    })
+    .catch( err => {
+      swal.fire(err.response.request.response)
+    })
   }
 
   addMyTreasure(newMyTreasure) {
