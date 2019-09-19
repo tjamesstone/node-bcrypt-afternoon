@@ -4,6 +4,7 @@ const session = require('express-session')
 const massive = require('massive')
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
 const authCtrl = require('./controllers/authController')
+const treasureCtrl = require('./controllers/treasureController')
 
 const app = express()
 
@@ -19,7 +20,8 @@ app.use(
 
 //ENDPOINTS
 app.post('/auth/register', authCtrl.register)
-
+app.post('/auth/login', authCtrl.login)
+app.get('/auth/logout', authCtrl.logout)
 //MASSIVE LISTENING
 
 massive(CONNECTION_STRING).then(db => {
